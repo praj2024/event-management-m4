@@ -1,11 +1,21 @@
-{% extends 'events/base.html' %}
+﻿{% extends 'events/base.html' %}
 
 {% block content %}
-<h2>Log In</h2>
+<h2>Login</h2>
+
+{% if messages %}
+  {% for message in messages %}
+    <div style="padding: 10px; margin-bottom: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
 </form>
+
 <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p>
 {% endblock %}

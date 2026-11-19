@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+﻿from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Event
+from django.contrib import messages
+from .models import Event, Category
 from .forms import EventForm, RegistrationForm, RegisterUserForm
 
 
@@ -9,13 +10,16 @@ def home(request):
 
 
 def events_list(request):
-    
     events = Event.objects.all().order_by('event_date')
     return render(request, 'events/events_list.html', {'events': events})
 
 
 @login_required
 def add_event(request):
+    if not Category.objects.exists():
+        for name in ['Workshop', 'Seminar', 'Conference', 'Networking']:
+            Category.objects.create(name=name)
+
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
@@ -53,6 +57,7 @@ def register_user(request):
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Account created successfully! Please log in.')
             return redirect('login')
     else:
         form = RegisterUserForm()
