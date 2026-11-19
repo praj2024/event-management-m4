@@ -1,0 +1,20 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<h1>Upcoming Events</h1>
+
+{% for event in events %}
+    <div class="event-card">
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.description }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Date:</strong> {{ event.event_date }}</p>
+        <p><strong>Category:</strong> {{ event.category }}</p>
+        <p><strong>Created by:</strong> {{ event.created_by.username|default:"Admin" }}</p>
+        <a class="btn" href="{% url 'register_event' event.id %}">Register for this Event</a>
+        
+    </div>
+{% empty %}
+    <p>No upcoming published events found.</p>
+{% endfor %}
+{% endblock %}

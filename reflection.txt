@@ -1,0 +1,16 @@
+﻿Milestone 4 Reflection
+
+1. What did you find most difficult about implementing authentication?
+Wiring together Django's built-in authentication URLs with custom templates—specifically making sure the login template lived in the exact `registration/login.html` path and using a POST form for logout instead of a standard link—was the trickiest part.
+
+2. Which part of this milestone took the most time, and why?
+Debugging syntax and model mismatches took the most time. Copying and editing views introduced an IndentationError in `events/views.py`, and ordering events by `date` instead of `event_date` caused a FieldError until I checked the model fields.
+
+3. How did you use AI tools during this assignment? Were the suggestions accurate? Did you have to evaluate or correct anything?
+I used AI to guide the PowerShell setup, structure the authentication views/templates, and troubleshoot tracebacks. Most suggestions were accurate, though I had to catch and correct a field-name assumption (`date` vs. `event_date`) to match my actual Milestone 3 `Event` model.
+
+4. What would you do differently if you were starting this milestone over?
+I would verify all existing model field names before rewriting views and run `python manage.py check` after each individual file edit rather than editing multiple files at once.
+
+5. What does it mean for a route or view to be "protected," and why does it matter?
+A protected view (using `@login_required`) restricts access so only authenticated users can execute it; unauthenticated visitors are redirected to the login page. This matters because it prevents anonymous users from creating, modifying, or abusing application data and allows actions to be tied to a specific user account.

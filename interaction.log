@@ -1,33 +1,8 @@
-Prompt:
+﻿Milestone 4 AI Interaction Log
 
-Why I asked this:
-
-What was suggested:
-
-What I used:
-
-What I changed or rejected:
-
------
-
-Prompt:
-
-Why I asked this:
-
-What was suggested:
-
-What I used:
-
-What I changed or rejected:
-
------
-
-Prompt:
-
-Why I asked this:
-
-What was suggested:
-
-What I used:
-
-What I changed or rejected:
+- Configured Git in Windows PowerShell PATH and cloned Milestone 3 and Milestone 4 repositories.
+- Copied Milestone 3 Django files (`events`, `eventsite`, `manage.py`) into the Milestone 4 repo, initialized a fresh virtual environment, and ran initial migrations.
+- Added `created_by` ForeignKey (linked to `django.contrib.auth.models.User`) to the `Event` model and created `RegisterUserForm` extending `UserCreationForm`.
+- Wired `django.contrib.auth.urls`, configured `LOGIN_URL`, `LOGIN_REDIRECT_URL`, and `LOGOUT_REDIRECT_URL`, and added `@login_required` to `add_event`.
+- Created `register.html` and `registration/login.html`, updated `base.html` with authentication-aware navigation (including POST logout), and displayed `created_by` in `events_list.html`.
+- Debugged and resolved an `IndentationError` in `events/views.py`, an `AttributeError` for `register_user`, and a `FieldError` by changing `order_by('date')` to `order_by('event_date')`.

@@ -1,0 +1,9 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<h1>Registration Confirmed!</h1>
+<p>Thank you, <strong>{{ registration.attendee_name }}</strong>.</p>
+<p>You are officially registered for <strong>{{ event.title }}</strong> on {{ event.event_date }}.</p>
+<p>A confirmation record has been saved under <strong>{{ registration.attendee_email }}</strong>.</p>
+<p><a class="btn" href="/events/">Back to Upcoming Events</a></p>
+{% endblock %}
